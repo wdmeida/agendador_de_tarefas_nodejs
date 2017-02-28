@@ -1,5 +1,10 @@
-const PORT = 3000;
+//Importa os módulos e define as constantes.
 const app = require("express")();
+const consign = require("consign");
 
-app.get("/", (req, res) => res.json({status: "NTask API"}));
-app.listen(PORT, () => console.log(`NTask API - porta ${PORT}`));
+consign()
+         .include("models")
+         .then("libs/middlewares.js")
+         .then("routes")
+         .then("libs/boot.js")
+         .into(app);
