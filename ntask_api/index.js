@@ -3,9 +3,9 @@ const app = require("express")();
 const consign = require("consign");
 
 consign()
-         .include("./libs/db.js")
-         .then("models")
-         .then("./libs/middlewares.js")
+         .include("libs/config.js")
+         .then("db.js")
+         .then("libs/middlewares.js")
          .then("routes")
-         .then("./libs/boot.js")
+         .then("libs/boot.js")
          .into(app);
