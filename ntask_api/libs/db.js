@@ -1,15 +1,16 @@
-import Sequelize from "sequelize";
-const config = require("./libs/config.js");
-let sequelize = null;
+const Sequelize = require("sequelize");
+const config = require("./config.js");
 
-module.exports = () => {
+var sequelize = null;
+
+module.exports = app => {
   if (!sequelize) {
     sequelize = new Sequelize(
-      config.database,
-      config.username,
-      config.password,
-      config.params
-    );
+                config.database,
+                config.username,
+                config.password,
+                config.params
+              );
   }
   return sequelize;
 };
