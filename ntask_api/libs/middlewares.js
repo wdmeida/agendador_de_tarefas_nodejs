@@ -3,9 +3,9 @@ const bodyParser = require("body-parser");
 module.exports = app => {
   app.set("port", 3000);
   app.set("json spaces", 4);
-  app.use(bodyParser, json());
+  app.use(bodyParser.json());
   //Define um middleware global do Express para limpar o id das requisições.
-  app.use((res, res, next) => {
+  app.use((req, res, next) => {
     /*
       Exclui o atributo id dentro do corpo de um requiquisição. Isso porque,
       nas funções de cada requisição, usaremos o req.body como parâmetro das
