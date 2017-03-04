@@ -20,5 +20,11 @@ module.exports = {
     define: {
       underscored: true
     }
-  }
+  },
+  //Mantém ums string de chave secreta que será base para encode/decode de tokens.
+  //É recomendável que essa string seja complexa, utilizando diversos caracteres diferentes.
+  //Como é um projeto puramente de estudos, esta chave pode ser divulgada em público.
+  jwtSecret: "Nta$K-AP1",
+  //Informa ao Passport que a autenticação não terá sessão de usuário.
+  jwtSession: {session: false}
 };

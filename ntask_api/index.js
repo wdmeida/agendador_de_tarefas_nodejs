@@ -1,10 +1,13 @@
 //Importa os módulos e define as constantes.
-const app = require("express")();
-const consign = require("consign");
+import express from "express";
+import consign from "consign";
+
+const app = express();
 
 consign()
          .include("libs/config.js")
          .then("db.js")
+         .then("auth.js")
          .then("libs/middlewares.js")
          .then("routes")
          .then("libs/boot.js")
