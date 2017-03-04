@@ -35,11 +35,11 @@ module.exports = app => {
       //"/tasks/1" :Consulta uma tarefa específica.
       //Procura uma tarefa específica através do seu id.
       Tasks.findOne({
-        where: {
-          id: req.params.id,
-          user_id: req.user.id
-         }
-      })
+          where: {
+            id: req.params.id,
+            user_id: req.user.id
+           }
+        })
         .then(result => {
           if (result) {
             res.json(result);
@@ -56,11 +56,11 @@ module.exports = app => {
       //A função Tasks.update faz uma limpeza dos campos que não existem no próprio modelo,
       //então não há problemas em enviar o req.body diretamente.
       Tasks.update(req.body, {
-        where: {
-          id: req.params.id,
-          user_id: req.user.id
-         }
-      })
+          where: {
+            id: req.params.id,
+            user_id: req.user.id
+           }
+        })
         .then(result => res.sendStatus(204))
         .catch(error => {
           res.status(412).json({msg: error.message});
