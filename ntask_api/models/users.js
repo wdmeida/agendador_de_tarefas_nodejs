@@ -42,8 +42,7 @@ module.exports = (sequelize, DataType) => {
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(user.password, salt);
       }
-    }
-  } , {
+    },
     classMethods: {
       associate: (models) => {
         Users.hasMany(models.Tasks);

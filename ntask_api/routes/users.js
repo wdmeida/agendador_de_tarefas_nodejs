@@ -14,10 +14,10 @@ module.exports = app => {
       .catch(error => {
         res.status(412).json({msg: error.message});
       });
-    });
+    })
 
-    .delete((req, res) => {
-      Users.destroy({where: {id: req.user.id} })
+  .delete((req, res) => {
+      Users.destroy({where: {id: req.user.id}})
         .then(result => {
             res.sendStatus(204);
         })

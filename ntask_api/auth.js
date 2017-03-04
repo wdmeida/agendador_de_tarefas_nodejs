@@ -1,9 +1,13 @@
 import passport from "passport";
-import { Strategy } from "passport-jwt";
+import { Strategy, ExtractJwt } from "passport-jwt";
 
 module.exports = app => {
   const Users = app.db.models.Users;
   const cfg = app.libs.config;
+  const params = {
+    secretOrKey: cfg.jwtSecret,
+    jwtFromRequest: ExtractJwt.fromAuthHeader()
+  }
 
   /*
     O middleware basicamente recebe em seu callback um payload, que é um JSON decodificado
@@ -12,8 +16,7 @@ module.exports = app => {
     acessado, para evitar overhead na aplicação, vamos enviar um objeto simples contendo apenas o id e
     email do usuário autenticados, por meio da função done({null, id: user.id, email:user.email});
   */
-  const strategy = new Strategy({secretOrKey: cfg.jwtSecret},
-    (payload, done) => {
+  const strategy = new Strategy(params, (payload, done) => {
       Users.findById(payload.id)
         .then(user => {
           if (user) {

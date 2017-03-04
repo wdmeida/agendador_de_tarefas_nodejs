@@ -1,8 +1,8 @@
-import Sequelize from "sequelize";
 import fs from "fs";
 import path from "path";
+import Sequelize from "sequelize";
 
-var db = null;
+let db = null;
 
 module.exports = app => {
   if (!db) {
@@ -40,7 +40,7 @@ module.exports = app => {
       */
       Object.keys(db.models).forEach(key => {
         db.models[key].associate(db.models);
-      }) ;
+      });
   }
   return db;
 };
