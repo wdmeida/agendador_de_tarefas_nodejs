@@ -1,3 +1,4 @@
+import logger from "./logger.js";
 /*
   Parâmetros utilizados no arquivo de configuração do sequelize
   com SQLite3:
@@ -17,6 +18,9 @@ module.exports = {
   params: {
     dialect: "sqlite",
     storage: "ntask.sqlite",
+    logging: (sql) => {
+      logger.info(`[${new Date()} ${sql}]`);
+    },
     define: {
       underscored: true
     }

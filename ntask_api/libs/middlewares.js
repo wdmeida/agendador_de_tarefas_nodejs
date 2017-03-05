@@ -1,9 +1,31 @@
 import bodyParser from "body-parser";
 import express from "express";
+import morgan from "morgan";
+import cors from "cors";
+import logger from "./logger.js";
 
 module.exports = app => {
   app.set("port", 3000);
   app.set("json spaces", 4);
+
+  //Habilita o log das requisições a api.
+  app.use(morgan("common", {
+    stream: {
+      write: (message) => {
+        logger.info(message);
+      }
+    }
+  }));
+
+  //Habilita o mecanismo de CORS para que gerencie as requisições assíncronas dos outros domínios.
+  app.use(cors({
+    //Domínios permitidos (Aplicação criada para exemplo.).
+    origin: ["http://localhost:3001"],
+    //Métodos permitidos.
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    //Headers obrigatórios.
+    allowHeaders: ["Content-Type", "Authorization"]
+  }));
   app.use(bodyParser.json());
   app.use(app.auth.initialize());
   //Define um middleware global do Express para limpar o id das requisições.
