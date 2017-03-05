@@ -2,6 +2,8 @@ import bodyParser from "body-parser";
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import compression from "compression";
+import helmet from "helmet";
 import logger from "./logger.js";
 
 module.exports = app => {
@@ -16,7 +18,8 @@ module.exports = app => {
       }
     }
   }));
-
+  //Habilita o módulo de segurança helmet para tratar brechas do HTTP.
+  app.use(helmet());
   //Habilita o mecanismo de CORS para que gerencie as requisições assíncronas dos outros domínios.
   app.use(cors({
     //Domínios permitidos (Aplicação criada para exemplo.).
@@ -26,6 +29,8 @@ module.exports = app => {
     //Headers obrigatórios.
     allowHeaders: ["Content-Type", "Authorization"]
   }));
+  //Ativa a transferência de arquivos compactados (gzip).
+  app.use(compression());
   app.use(bodyParser.json());
   app.use(app.auth.initialize());
   //Define um middleware global do Express para limpar o id das requisições.
