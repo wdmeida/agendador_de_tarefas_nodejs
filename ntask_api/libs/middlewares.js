@@ -1,4 +1,5 @@
 import bodyParser from "body-parser";
+import express from "express";
 
 module.exports = app => {
   app.set("port", 3000);
@@ -20,4 +21,8 @@ module.exports = app => {
     delete req.body.id;
     next();
   });
+
+  //Habilita o servidor de arquivos estáticos do Express, para que ele sirva o conteúdo
+  //estático existente na pasta public.
+  app.use(express.static("public"));
 };

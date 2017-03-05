@@ -15,8 +15,8 @@ describe("Routes: Users", () => {
       }))
       .then(user => {
         token = jwt.encode({id: user.id}, jwtSecret);
-        done();
-      });
+      })
+      .then(done());
   });
 
   describe("GET /user", () => {
