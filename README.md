@@ -1,4 +1,4 @@
-#Agendador de tarefas (NodeJS) 
+<h1>Agendador de tarefas (NodeJS)</h1> 
 
 Projeto desenvolvido durante os estudos do livro <strong>Construindo APIs REST com Node.js</strong>, da Casa do Código. A API desenvolvida utiliza as seguintes tecnologias:
 
@@ -28,6 +28,8 @@ Projeto desenvolvido durante os estudos do livro <strong>Construindo APIs REST c
     <li><strong>supertest</strong></li>
   </ul>
 </ul>
+
+<h2>Executando a API</h2>
 
 Para iniciar a <strong>API</strong>, no terminal, dentro do diretório ntask_api, execute o comando abaixo para instalar as dependências:
 
